@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shabangu Fast Food — Order On WhatsApp | Xintimani Group</title>
+<style>
+*{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;background:#fff7ed;color:#0f172a;padding-bottom:40px}
+header{background:#0a1f4d;color:#fff;padding:16px;text-align:center}
+.logo-top{height:80px;width:auto;background:#fff;border-radius:12px;padding:6px}
+.topbar{background:#fff;padding:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;border-bottom:2px solid #ea580c;position:sticky;top:0;z-index:20}
+button{cursor:pointer;border:none;border-radius:10px;padding:12px 16px;font-weight:800}input,select{width:100%;padding:12px;margin:6px 0;border-radius:10px;border:1px solid #ddd}
+.card{background:#fff;border-radius:16px;padding:16px;margin:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);border:1px solid #ffedd5}
+.wrap{max-width:1000px;margin:0 auto}
+.orange{background:#ea580c;color:#fff}.green{background:#059669;color:#fff}.blue{background:#0a1f4d;color:#fff}.gold{background:#d4af37;color:#0a1f4d}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}}
+.item{border:2px solid #ffedd5;border-radius:14px;padding:12px;text-align:center}.item img{width:100%;height:110px;object-fit:cover;border-radius:10px;background:#ffedd5}
+.qty{display:flex;gap:6px;justify-content:center;align-items:center;margin:8px 0}.qty button{padding:6px 12px}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800;background:#ffedd5;color:#9a3412}
+</style></head>
+<body>
+<header><img src="logo.png" alt="XINTIMANI GROUP" class="logo-top" onerror="this.style.display='none'"><h1 style="margin:6px 0">🍔 SHABANGU FAST FOOD</h1><p style="margin:0;font-size:13px">Part of Xintimani Group • Digitals Division • Founder Mr Vusi Chauke • WhatsApp 0780233263<br>Fast. Fresh. Affordable. For The Community.</p></header>
+<div class="topbar"><button class="orange" onclick="filterMenu('ALL')">🍔 ALL</button><button class="blue" onclick="filterMenu('KOTA')">🥪 KOTA</button><button class="blue" onclick="filterMenu('CHIPS')">🍟 CHIPS</button><button class="blue" onclick="filterMenu('CHICKEN')">🍗 CHICKEN</button><button class="blue" onclick="filterMenu('BURGER')">🍔 BURGER</button><button class="blue" onclick="filterMenu('DRINK')">🥤 DRINKS</button><button class="blue" onclick="filterMenu('COMBO')">🎁 COMBOS</button><a href="https://vusichauke3037-glitch.github.io/XINTIMANI-GROUP/" target="_blank" style="background:#0a1f4d;color:#fff;padding:12px 16px;border-radius:10px;font-weight:800">🏢 GROUP</a></div>
+<div class="wrap">
+<div class="card" style="text-align:center"><span class="badge">🔥 TODAY'S SPECIAL — ASK ON WHATSAPP</span><h2 style="margin:8px 0">Order In 3 Steps</h2><p style="color:#475569;margin:0"><b>1.</b> Tap + to add to cart → <b>2.</b> Enter your name + delivery / collection → <b>3.</b> Tap ORDER ON WHATSAPP — We confirm in minutes.</p><p><b>🛒 Cart: <span id="cartCount">0</span> items • Total: R<span id="cartTotal">0</span></b></p></div>
+<div id="menuGrid" class="grid"></div>
+<div class="card"><h2>🛒 Your Order</h2><div id="cartList"><p style="color:#64748b">Cart is empty. Add items above.</p></div><input id="custName" placeholder="Your Name e.g. Thabo Mokoena"><input id="custPhone" placeholder="Your Phone e.g. 0781234567"><select id="orderType"><option value="COLLECTION - I will collect">COLLECTION - I will collect</option><option value="DELIVERY - Deliver to me">DELIVERY - Deliver to me (via Makhanani Logistics)</option></select><input id="custAddress" placeholder="Delivery Address (if delivery) e.g. 123 Main Street"><textarea id="custNote" placeholder="Note e.g. No chilli, Extra sauce..." rows="2" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd"></textarea><button class="green" style="width:100%;font-size:16px;padding:16px" onclick="sendOrder()">📩 ORDER ON WHATSAPP →</button><button class="blue" style="width:100%;margin-top:6px" onclick="clearCart()">🗑️ CLEAR CART</button><p style="font-size:12px;color:#64748b">Delivery fee depends on distance — We confirm on WhatsApp before you pay. Never share PIN / OTP.</p></div>
+<div class="card"><h2>📋 Full Menu & Prices</h2><table style="width:100%;border-collapse:collapse"><tr style="background:#0a1f4d;color:#fff"><th style="padding:10px;text-align:left">Item</th><th style="padding:10px;text-align:left">Price</th></tr><tbody id="priceTable"></tbody></table></div>
+<div class="card" style="text-align:center"><b>SHABANGU FAST FOOD — XINTIMANI GROUP</b><br>Mr Vusi Chauke — WhatsApp 0780233263<br>🚚 Delivery by Makhanani Logistics • 🍔 Fresh Daily</div>
+</div>
+<script>
+var MENU=[
+{id:1,cat:'KOTA',name:'Kota Small',desc:'Bread, chips, polony, cheese, sauce',price:30,img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400'},
+{id:2,cat:'KOTA',name:'Kota Medium',desc:'Bread, chips, polony, cheese, egg, sauce',price:45,img:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400'},
+{id:3,cat:'KOTA',name:'Kota Large - Shabangu Special',desc:'Double chips, cheese, polony, egg, vienna, sauce',price:65,img:'https://images.unsplash.com/photo-1521305916504-4a1121188589?w=400'},
+{id:4,cat:'CHIPS',name:'Chips Small',desc:'Crispy chips + salt + vinegar',price:20,img:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400'},
+{id:5,cat:'CHIPS',name:'Chips Large + Cheese',desc:'Large chips + melted cheese + sauce',price:40,img:'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400'},
+{id:6,cat:'CHICKEN',name:'Fried Chicken 2pc + Chips',desc:'2pc crispy chicken + chips',price:60,img:'https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400'},
+{id:7,cat:'CHICKEN',name:'Chicken Wings 4pc + Chips',desc:'4 wings, sauce, chips',price:70,img:'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=400'},
+{id:8,cat:'BURGER',name:'Beef Burger',desc:'Beef patty, lettuce, tomato, cheese, sauce',price:55,img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400'},
+{id:9,cat:'BURGER',name:'Chicken Burger',desc:'Chicken fillet, lettuce, mayo',price:50,img:'https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400'},
+{id:10,cat:'DRINK',name:'Cold Drink 500ml',desc:'Coke / Fanta / Sprite / Stoney',price:18,img:'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400'},
+{id:11,cat:'DRINK',name:'Juice / Water',desc:'Fruit juice or still water',price:15,img:'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400'},
+{id:12,cat:'COMBO',name:'Combo 1 - Kota + Drink',desc:'Kota Medium + Cold Drink',price:55,img:'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400'},
+{id:13,cat:'COMBO',name:'Combo 2 - Chicken + Chips + Drink',desc:'2pc Chicken + Chips + Drink',price:75,img:'https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=400'},
+{id:14,cat:'COMBO',name:'Family Combo - Share',desc:'2x Kota Large + Chips Large + 2 Drinks',price:150,img:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400'},
+];
+var cart={};var curFilter='ALL';
+function filterMenu(f){curFilter=f;renderMenu();}
+function renderMenu(){var list=MENU.filter(function(m){return curFilter==='ALL'||m.cat===curFilter;});document.getElementById('menuGrid').innerHTML=list.map(function(m){return '<div class="item"><img src="'+m.img+'" onerror="this.style.display=\'none\'"><h3 style="margin:8px 0 4px">'+m.name+'</h3><p style="font-size:12px;color:#475569;margin:0">'+m.desc+'</p><p><b style="font-size:18px;color:#ea580c">R'+m.price+'</b> • <span class="badge">'+m.cat+'</span></p><div class="qty"><button class="blue" onclick="addToCart('+m.id+',-1)">-</button><b id="qty-'+m.id+'">'+(cart[m.id]||0)+'</b><button class="orange" onclick="addToCart('+m.id+',1)">+</button></div><button class="orange" style="width:100%" onclick="addToCart('+m.id+',1)">➕ ADD TO CART</button></div>';}).join('');document.getElementById('priceTable').innerHTML=MENU.map(function(m){return '<tr><td style="padding:8px;border:1px solid #eee">'+m.name+' — '+m.desc+'</td><td style="padding:8px;border:1px solid #eee"><b>R'+m.price+'</b></td></tr>';}).join('');renderCart();}
+function addToCart(id,delta){cart[id]=(cart[id]||0)+delta;if(cart[id]<=0)delete cart[id];renderMenu();}
+function renderCart(){var items=Object.keys(cart);var total=0;var count=0;var html='';items.forEach(function(id){var m=MENU.find(function(x){return x.id==id;});var q=cart[id];var sub=m.price*q;total+=sub;count+=q;html+='<div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:8px 0"><span><b>'+q+'x</b> '+m.name+'</span><b>R'+sub+'</b></div>';});document.getElementById('cartCount').textContent=count;document.getElementById('cartTotal').textContent=total;document.getElementById('cartList').innerHTML=html?html+'<div style="display:flex;justify-content:space-between;padding:10px 0"><b>Total:</b><b style="color:#ea580c;font-size:18px">R'+total+'</b></div>':'<p style="color:#64748b">Cart is empty. Add items above.</p>';}
+function clearCart(){cart={};renderMenu();}
+function sendOrder(){var items=Object.keys(cart);if(!items.length)return alert('Cart is empty. Add items first.');var name=document.getElementById('custName').value.trim();var phone=document.getElementById('custPhone').value.trim();if(!name)return alert('Enter Your Name');var type=document.getElementById('orderType').value;var addr=document.getElementById('custAddress').value.trim();var note=document.getElementById('custNote').value.trim();var total=0;var lines=items.map(function(id){var m=MENU.find(function(x){return x.id==id;});var q=cart[id];var sub=m.price*q;total+=sub;return q+'x '+m.name+' — R'+sub;}).join('\n');var msg='Hello Shabangu Fast Food 🍔\n\nNEW ORDER\nName: '+name+'\nPhone: '+phone+'\nType: '+type+'\nAddress: '+(addr||'Collection')+'\nNote: '+(note||'None')+'\n\nORDER:\n'+lines+'\n\nTOTAL: R'+total+'\n\nPlease confirm + delivery fee. Thank you!';window.open('https://wa.me/27780233263?text='+encodeURIComponent(msg),'_blank');}
+renderMenu();
+</script></body></html>
