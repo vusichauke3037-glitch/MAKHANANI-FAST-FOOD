@@ -1,47 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#ea580c"><link rel="apple-touch-icon" href="icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Makhanani Food"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Makhanani Fast Food — Kota, Chips, Burgers, Chicken | Xintimani Group</title>
-<style>
-*{box-sizing:border-box}body{font-family:Arial,sans-serif;margin:0;background:#fff7ed;color:#0f172a;padding-bottom:50px;line-height:1.6}
-header{background:linear-gradient(135deg,#0a1f4d,#ea580c);color:#fff;padding:16px;text-align:center}
-.topbar{background:#fff;padding:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;border-bottom:3px solid #ea580c;position:sticky;top:0;z-index:20}
-a.btn{border:none;border-radius:10px;padding:12px 16px;font-weight:800;text-decoration:none;display:inline-block}
-.card{background:#fff;border-radius:16px;padding:16px;margin:12px;box-shadow:0 2px 8px rgba(0,0,0,.08)}.wrap{max-width:1000px;margin:0 auto}
-.gold{background:#d4af37;color:#0a1f4d}.blue{background:#0a1f4d;color:#fff}.green{background:#059669;color:#fff}.teal{background:#0d9488;color:#fff}.purple{background:#7c3aed;color:#fff}.orange{background:#ea580c;color:#fff}.dark{background:#0f172a;color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}}
-.item{border:3px solid #fed7aa;border-radius:16px;padding:14px;text-align:center;background:#fff}.item button{width:100%}
-.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800;background:#ffedd5;color:#9a3412}
-</style></head>
+<title>Makhanani Fast Food | Quality Food, Fast Service</title>
+<style>body{font-family:Arial,sans-serif;margin:0;background:#fff8e1;color:#222;text-align:center}header{background:#000;color:#fff;padding:30px 15px}header img{width:230px;max-width:85%;background:#fff;padding:10px;border-radius:14px}h1{color:#d4af37}.btn{display:inline-block;background:#d4af37;color:#000;padding:14px 22px;border-radius:10px;text-decoration:none;font-weight:bold;margin:10px}.card{background:#fff;margin:15px auto;max-width:650px;padding:20px;border-radius:14px;text-align:left;box-shadow:0 2px 10px rgba(0,0,0,.08)}footer{background:#000;color:#fff;padding:20px}</style></head>
 <body>
-<header><h1>🍔 MAKHANANI FAST FOOD</h1><p style="margin:0;font-size:13px">Xintimani Group • Hot. Fresh. Fast. • Mr Vusi Chauke • WhatsApp 0780233263<br>📍 Johannesburg • Delivery via Makhanani Logistics • 📲 Downloadable App</p></header>
-<div id="installBox" style="display:none;background:#ea580c;color:#fff;padding:12px;text-align:center;font-weight:800;border-bottom:3px solid #0a1f4d">📲 DOWNLOAD APP — Makhanani Fast Food<br><button id="installBtn" style="background:#0a1f4d;color:#fff;border:none;padding:12px 20px;border-radius:10px;font-weight:800;margin-top:8px;cursor:pointer">📲 INSTALL APP NOW</button></div>
-<script>let deferredPrompt=null;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();deferredPrompt=e;document.getElementById('installBox').style.display='block';});document.getElementById('installBtn').addEventListener('click',function(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(function(){deferredPrompt=null;document.getElementById('installBox').style.display='none';});}else{alert('Android Chrome: Tap Menu ⋮ → Add to Home Screen / Install App\n\niPhone Safari: Tap Share ↑ → Add to Home Screen');}});</script>
-<div class="topbar">
-<a class="btn gold" href="https://vusichauke3037-glitch.github.io/XINTIMANI-GROUP/Jobs.html" target="_blank">💼 JOBS</a>
-<a class="btn purple" style="border:2px solid #d4af37" href="https://vusichauke3037-glitch.github.io/MAKHANANI-ACADEMY/" target="_blank">🎓 MAKHANANI ACADEMY</a>
-<a class="btn blue" href="https://vusichauke3037-glitch.github.io/XINTIMANI-GROUP/" target="_blank">🏢 GROUP</a>
-<a class="btn teal" href="https://vusichauke3037-glitch.github.io/MAKHANANI-LTSM/" target="_blank">📚 LTSM</a>
-<a class="btn orange" href="https://vusichauke3037-glitch.github.io/MAKHANANI-FAST-FOOD/" target="_blank">🍔 FOOD HOME</a>
-<a class="btn teal" href="https://vusichauke3037-glitch.github.io/MAKHANANI-LOGISTICS/" target="_blank">🚚 LOGISTICS</a>
-<a class="btn green" href="https://wa.me/27780233263?text=Hello%20Mr%20Chauke%2C%20I%20want%20to%20ORDER%20FOOD" target="_blank">📩 ORDER</a></div>
-<div class="wrap">
-<div class="card" style="text-align:center;border:3px solid #ea580c"><span class="badge">🔥 TODAY'S SPECIAL — KOTA + CHIPS + DRINK</span><h2>Tap + To Add To Order • Then Send On WhatsApp</h2><p>Your Name: <input id="custName" placeholder="Your Name" style="padding:12px;border:1px solid #ddd;border-radius:10px;width:100%"><br>Delivery or Pickup? <select id="orderType" style="padding:12px;border:1px solid #ddd;border-radius:10px;width:100%"><option>Pickup</option><option>Delivery</option></select><br>Address (if Delivery): <input id="custAddr" placeholder="Street + Area" style="padding:12px;border:1px solid #ddd;border-radius:10px;width:100%"></p></div>
-<div class="card"><h2>🍔 Menu — Tap + To Add</h2><div class="grid" id="menuGrid"></div></div>
-<div class="card"><h2>🧾 Your Order</h2><div id="cartList"><p>Cart is empty. Tap + on menu.</p></div><h3>Total: R<span id="cartTotal">0</span></h3><button class="green" style="width:100%;padding:14px;border:none;border-radius:10px;font-weight:800" onclick="sendOrder()">📩 SEND ORDER ON WHATSAPP →</button><button class="orange" style="width:100%;padding:12px;border:none;border-radius:10px;font-weight:800;margin-top:8px" onclick="clearCart()">🗑️ CLEAR CART</button></div>
-<div class="card"><h2>🎓 Hungry For Knowledge Too?</h2><p>While food cooks, study in Makhanani Academy — 1,000 Questions, Free Practice.</p><a class="btn purple" href="https://vusichauke3037-glitch.github.io/MAKHANANI-ACADEMY/" target="_blank">🎓 OPEN ACADEMY →</a> <a class="btn gold" href="https://vusichauke3037-glitch.github.io/XINTIMANI-GROUP/Jobs.html" target="_blank">💼 JOBS IN FOOD →</a></div>
-<div class="card" style="text-align:center;font-size:12px"><b>MAKHANANI FAST FOOD — XINTIMANI GROUP</b><br>Mr Vusi Chauke — WhatsApp 0780233263</div>
-</div>
-<script>
-var MENU=[{n:'Kota Full',p:45,e:'🍔'},{n:'Kota Half',p:25,e:'🥪'},{n:'Chips Small',p:20,e:'🍟'},{n:'Chips Large',p:35,e:'🍟'},{n:'Burger + Chips',p:55,e:'🍔'},{n:'Chicken + Chips',p:65,e:'🍗'},{n:'Russian + Chips',p:50,e:'🌭'},{n:'Cold Drink',p:15,e:'🥤'},{n:'Water',p:10,e:'💧'}];
-var cart={};
-function renderMenu(){document.getElementById('menuGrid').innerHTML=MENU.map(function(m,i){return '<div class="item"><div style="font-size:36px">'+m.e+'</div><b>'+m.n+'</b><br><b>R'+m.p+'</b><br><button class="orange" style="border:none;border-radius:10px;padding:10px;font-weight:800" onclick="addToCart('+i+')">➕ ADD</button></div>';}).join('');}
-function addToCart(i){cart[i]=(cart[i]||0)+1;renderCart();}
-function renderCart(){var html='';var total=0;for(var k in cart){var m=MENU[k];var q=cart[k];total+=m.p*q;html+='<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span>'+m.e+' '+m.n+' x'+q+'</span><b>R'+(m.p*q)+'</b> <button onclick="removeFromCart('+k+')" style="border:none;background:#fee2e2;border-radius:8px;padding:4px 8px">➖</button></div>';}document.getElementById('cartList').innerHTML=html||'<p>Cart is empty.</p>';document.getElementById('cartTotal').textContent=total;}
-function removeFromCart(k){cart[k]--;if(cart[k]<=0)delete cart[k];renderCart();}
-function clearCart(){cart={};renderCart();}
-function sendOrder(){var name=document.getElementById('custName').value.trim()||'Customer';var type=document.getElementById('orderType').value;var addr=document.getElementById('custAddr').value.trim();var total=0;var lines=[];for(var k in cart){var m=MENU[k];total+=m.p*cart[k];lines.push(m.n+' x'+cart[k]+' = R'+(m.p*cart[k]));}if(lines.length===0){alert('Add something first');return;}var msg='Hello Mr Chauke, I want to ORDER FOOD 🍔\nName: '+name+'\nType: '+type+'\nAddress: '+(addr||'Pickup')+'\n\n'+lines.join('\n')+'\n\nTOTAL: R'+total;window.open('https://wa.me/27780233263?text='+encodeURIComponent(msg),'_blank');}
-renderMenu();renderCart();
-</script>
-<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(e){console.log('SW:',e);});}</script>
+<header>
+<img src="logo.png" alt="Xintimani Group Logo">
+<h1>MAKHANANI FAST FOOD</h1>
+<p>Quality Food. Fast Service. | Part of Xintimani Group</p>
+<a class="btn" href="https://wa.me/27780233263?text=Hi%20Makhanani%20Fast%20Food%2C%20I%20want%20to%20order">🍔 Order on WhatsApp</a>
+</header>
+
+<div class="card"><h2>🍔 Menu</h2>
+<p>✅ Kota & Chips — R35<br>✅ Chicken & Chips — R55<br>✅ Burger & Chips — R60<br>✅ Hot Wings (4) — R45<br>✅ Vetkoek & Mince — R30<br>✅ Cold Drinks — R15</p></div>
+
+<div class="card"><h2>🎉 Catering</h2>
+<p>School events, parties, funerals, office lunch — WhatsApp us for catering quote.</p></div>
+
+<div class="card"><h2>📞 Contact</h2>
+<p>📲 078 023 3263<br>📧 vusichauke3037@gmail.com<br>🌐 <a href="https://vusichauke3037-glitch.github.io/XINTIMANI-GROUP/">Back to Xintimani Group</a></p>
+<a class="btn" href="https://wa.me/27780233263">WhatsApp Order</a></div>
+<footer>© 2026 Makhanani Fast Food | Xintimani Group</footer>
 </body></html>
